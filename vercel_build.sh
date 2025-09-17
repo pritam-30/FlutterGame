@@ -21,7 +21,16 @@ echo "[Vercel] Fetching packages"
 flutter pub get
 
 echo "[Vercel] Building web (release)"
-flutter build web --release --no-tree-shake-icons
+echo "[Vercel] PWD=$(pwd)"
+echo "[Vercel] Listing root:"; ls -la || true
+if [ ! -f "pubspec.yaml" ]; then
+  echo "[Vercel] ERROR: pubspec.yaml not found in $(pwd)"
+  exit 1
+fi
+if [ ! -f "lib/main.dart" ]; then
+  echo "[Vercel] WARNING: lib/main.dart not found, listing lib/"; ls -la lib || true
+fi
+flutter build web --release --no-tree-shake-icons -t lib/main.dart
 
 echo "[Vercel] Build complete: build/web"
 
