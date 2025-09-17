@@ -7,14 +7,14 @@ export PATH="$PWD/_flutter/bin:$PATH"
 flutter --version
 
 echo "[Vercel] Configuring web and precaching"
-flutter config --enable-web --no-analytics
-flutter precache --web --no-analytics
+flutter config --enable-web
+flutter precache --web
 
 echo "[Vercel] Fetching packages"
 flutter pub get
 
 echo "[Vercel] Building web (release)"
-flutter build web --release --no-tree-shake-icons --no-analytics
+flutter build web --release --no-tree-shake-icons
 
 echo "[Vercel] Build complete: build/web"
 
