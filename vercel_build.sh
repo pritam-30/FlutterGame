@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ensure we are in the project root (where this script lives and pubspec.yaml is)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 echo "[Vercel] Installing Flutter SDK (stable channel)"
 git clone --depth 1 --branch stable https://github.com/flutter/flutter.git _flutter
 export PATH="$PWD/_flutter/bin:$PATH"
